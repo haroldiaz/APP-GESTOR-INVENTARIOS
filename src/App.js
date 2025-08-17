@@ -1,11 +1,46 @@
+// src/App.jsx
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import './App.css';
+
+import MenuPrincipal from './Pages/MenuPrincipal.jsx';  
+
+import Navbar from './Components/NavBar';
+import { Box } from '@mui/material';
+import VerProductos from './Pages/VerProductos.jsx';
+import RegistrarProductos from './Pages/RegistrarProductos.jsx';
+
+const drawerWidthOpen = 240;
+const drawerWidthClosed = 70;
 
 function App() {
+  const [drawerOpen, setDrawerOpen] = useState(true);
+
   return (
-    <div className="App">
-      <h1>Welcome to My React App</h1>
-    </div>
+    <Router>
+      <Box sx={{ display: 'flex' }}>
+       
+        <Navbar open={drawerOpen} setOpen={setDrawerOpen} />
+
+        {/* Contenido principal */}
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            marginLeft: drawerOpen ? `${drawerWidthOpen}px` : `${drawerWidthClosed}px`,
+            transition: 'margin 0.3s',
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<MenuPrincipal />} />
+            <Route path="/Productos" element={<VerProductos />} />
+           <Route path="/RegistrarProducto" element={<RegistrarProductos />} />
+            
+          </Routes>
+        </Box>
+      </Box>
+    </Router>
   );
 }
 
