@@ -18,10 +18,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HomeIcon from '@mui/icons-material/Home';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import InsertChartIcon from '@mui/icons-material/InsertChart';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -52,13 +49,9 @@ export default function Navbar({ open, setOpen }) {
   const navItems = [
     { text: 'Menú Principal', icon: <HomeIcon />, route: '/' },
     { text: 'Productos', icon: <EventNoteIcon />, route: '/Productos' },
-    { text: 'Registro Productos', icon: <AddCircleOutlineIcon />, route: '/RegistrarProducto' },
-    { text: 'Estadísticas', icon: <InsertChartIcon />, route: '/Estadisticas' },
-    { text: 'Gráficos', icon: <InsertChartIcon />, route: '/Graficos' },
-    { text: 'Reportes', icon: <BarChartIcon />, route: '/Reportes' },
-    { text: 'Alerta', icon: <WarningAmberIcon />, route: '/Alerta' },
-    { text: 'Configuracion', icon: <WarningAmberIcon />, route: '/Configuracion' },
-    { text: 'Reporte Producto', icon: <AppRegistrationIcon />, route: '/ReporteProducto' }
+    { text: 'Registro Productos', icon: <AppRegistrationIcon />, route: '/RegistrarProducto' },
+    
+    
   ];
 
   return (
