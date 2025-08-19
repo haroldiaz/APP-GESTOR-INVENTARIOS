@@ -1,7 +1,11 @@
 import React from "react";
-import { Box, Button, Typography, Stack, Paper } from "@mui/material";
+import { Box, Typography, Card, CardContent, Stack } from "@mui/material";
 
 export default function MenuPrincipal() {
+  // Ejemplo de totales (luego puedes traerlos de tu BD)
+  const totalProductos = 120;
+  const totalProveedores = 15;
+
   return (
     <Box
       display="flex"
@@ -9,36 +13,37 @@ export default function MenuPrincipal() {
       alignItems="center"
       height="100vh"
       bgcolor="#f4f6f8"
+      p={2}
     >
-      <Paper
-        elevation={6}
-        sx={{ p: 5, borderRadius: 3, textAlign: "center", minWidth: 300 }}
-      >
+      <Box textAlign="center" width="100%" maxWidth="800px">
         <Typography variant="h4" gutterBottom>
           📦 Inventario
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          Menú Principal
-        </Typography>
+       
 
-        <Stack spacing={2} mt={3}>
-          <Button variant="contained" color="primary" fullWidth>
-            Productos
-          </Button>
-          <Button variant="contained" color="secondary" fullWidth>
-            Categorías
-          </Button>
-          <Button variant="contained" color="success" fullWidth>
-            Proveedores
-          </Button>
-          <Button variant="contained" color="warning" fullWidth>
-            Movimientos
-          </Button>
-          <Button variant="contained" color="info" fullWidth>
-            Reportes
-          </Button>
+        {/* Cards de Totales */}
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          spacing={2}
+          justifyContent="center"
+          alignItems="stretch"
+          mt={3}
+        >
+          <Card sx={{ flex: 1 }}>
+            <CardContent>
+              <Typography variant="h6">Total Productos</Typography>
+              <Typography variant="h4">{totalProductos}</Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{ flex: 1 }}>
+            <CardContent>
+              <Typography variant="h6">Total Proveedores</Typography>
+              <Typography variant="h4">{totalProveedores}</Typography>
+            </CardContent>
+          </Card>
         </Stack>
-      </Paper>
+      </Box>
     </Box>
   );
 }
