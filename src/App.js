@@ -10,6 +10,7 @@ import RegistrarProductos from './Pages/RegistrarProductos.jsx';
 import EntradasSalidas from './Pages/EntradasSalidas.jsx';
 import Exportar from './Pages/Exportar.jsx';
 import Proveedores from './Pages/Proveedores.jsx';
+import Historial from './Pages/Historial.jsx';
 
 const drawerWidthOpen = 240;
 const drawerWidthClosed = 70;
@@ -40,6 +41,7 @@ function App() {
             <Route path="/Entradas" element={<EntradasSalidas />} />
             <Route path="/Exportar" element={<Exportar />} />
             <Route path="/Proveedores" element={<Proveedores />} />
+            <Route path="/Historial" element={<Historial />} />
           </Routes>
         </Box>
       </Box>
