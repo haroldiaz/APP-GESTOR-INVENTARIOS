@@ -50,8 +50,10 @@ export default function Navbar({ open, setOpen }) {
     { text: 'Menú Principal', icon: <HomeIcon />, route: '/' },
     { text: 'Productos', icon: <EventNoteIcon />, route: '/Productos' },
     { text: 'Registro Productos', icon: <AppRegistrationIcon />, route: '/RegistrarProducto' },
+    { text: 'Entradas Salidas', icon: <AppRegistrationIcon />, route: '/Entradas' },
     
-    
+    { text: 'Proveedores', icon: <AppRegistrationIcon />, route: '/Proveedores' },
+    { text: 'Exportar', icon: <AppRegistrationIcon />, route: '/Exportar' },
   ];
 
   return (
