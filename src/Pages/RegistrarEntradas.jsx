@@ -7,6 +7,8 @@ import {
   MenuItem,
   Paper,
   Stack,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { supabase } from "../Services/supabaseClient"; // ajusta la ruta según tu proyecto
 
@@ -23,6 +25,13 @@ function RegistrarEntradas() {
 
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  // 🔹 Estado para mostrar mensajes
+  const [alerta, setAlerta] = useState({
+    open: false,
+    mensaje: "",
+    tipo: "success", // success | error | info | warning
+  });
 
   // 🔹 Traer productos desde Supabase
   useEffect(() => {
@@ -54,7 +63,7 @@ function RegistrarEntradas() {
 
     const { error } = await supabase.from("Entrada").insert([
       {
-        producto: formData.producto, // id del producto seleccionado
+        producto: formData.producto,
         cantidad: parseInt(formData.cantidad, 10),
         tipo: formData.tipo,
         fecha: formData.fecha,
@@ -65,14 +74,23 @@ function RegistrarEntradas() {
     ]);
 
     if (error) {
-      alert("Error al registrar: " + error.message);
+      setAlerta({
+        open: true,
+        mensaje: "❌ Error al registrar: " + error.message,
+        tipo: "error",
+      });
     } else {
-      alert("Registro exitoso ✅");
+      setAlerta({
+        open: true,
+        mensaje: "✅ Registro exitoso",
+        tipo: "success",
+      });
       setFormData({
         producto: "",
-        fecha: "",
         cantidad: "",
         tipo: "",
+        fecha: "",
+        tipo_producto: "",
         proveedor: "",
         motivo: "",
       });
@@ -178,6 +196,22 @@ function RegistrarEntradas() {
           </Button>
         </Stack>
       </Box>
+
+      {/* Snackbar para mostrar mensajes */}
+      <Snackbar
+        open={alerta.open}
+        autoHideDuration={4000}
+        onClose={() => setAlerta({ ...alerta, open: false })}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setAlerta({ ...alerta, open: false })}
+          severity={alerta.tipo}
+          sx={{ width: "100%" }}
+        >
+          {alerta.mensaje}
+        </Alert>
+      </Snackbar>
     </Paper>
   );
 }

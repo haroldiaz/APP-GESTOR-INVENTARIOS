@@ -7,6 +7,7 @@ import {
   Typography,
   Paper,
   Stack,
+  Snackbar,
   Alert,
 } from "@mui/material";
 
@@ -18,7 +19,11 @@ export default function RegistrarProveedor() {
     direccion: "",
   });
 
-  const [mensaje, setMensaje] = useState(null);
+  const [alerta, setAlerta] = useState({
+    open: false,
+    mensaje: "",
+    tipo: "success", // success | error
+  });
 
   const handleChange = (e) => {
     setFormData({
@@ -33,9 +38,17 @@ export default function RegistrarProveedor() {
     const { error } = await supabase.from("Proveedor").insert([formData]);
 
     if (error) {
-      setMensaje({ tipo: "error", texto: "Error al registrar: " + error.message });
+      setAlerta({
+        open: true,
+        mensaje: " Error al registrar: " + error.message,
+        tipo: "error",
+      });
     } else {
-      setMensaje({ tipo: "success", texto: "Proveedor registrado con éxito ✅" });
+      setAlerta({
+        open: true,
+        mensaje: "Proveedor registrado con éxito",
+        tipo: "success",
+      });
       setFormData({
         nombre: "",
         telefono: "",
@@ -46,17 +59,17 @@ export default function RegistrarProveedor() {
   };
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" bgcolor="#f5f5f5">
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      bgcolor="#f5f5f5"
+    >
       <Paper elevation={3} sx={{ p: 4, width: 400 }}>
         <Typography variant="h5" gutterBottom align="center">
           Registrar Proveedor
         </Typography>
-
-        {mensaje && (
-          <Alert severity={mensaje.tipo} sx={{ mb: 2 }}>
-            {mensaje.texto}
-          </Alert>
-        )}
 
         <form onSubmit={handleSubmit}>
           <Stack spacing={2}>
@@ -100,6 +113,22 @@ export default function RegistrarProveedor() {
           </Stack>
         </form>
       </Paper>
+
+      {/* Snackbar de notificación */}
+      <Snackbar
+        open={alerta.open}
+        autoHideDuration={4000}
+        onClose={() => setAlerta({ ...alerta, open: false })}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setAlerta({ ...alerta, open: false })}
+          severity={alerta.tipo}
+          sx={{ width: "100%" }}
+        >
+          {alerta.mensaje}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
