@@ -54,8 +54,10 @@ export default function Navbar({ open, setOpen }) {
     { text: 'RegistrarEntrada-Sal', icon: <AppRegistrationIcon />, route: '/RegistrarEntrada' },
     
     { text: 'Proveedores', icon: <AppRegistrationIcon />, route: '/Proveedores' },
+    { text: 'Registrar Proveedores', icon: <AppRegistrationIcon />, route: '/RegistroProveedores' },
     { text: 'Exportar', icon: <AppRegistrationIcon />, route: '/Exportar' },
     { text: 'Historial', icon: <AppRegistrationIcon />, route: '/Historial' },
+    { text: 'Estadisticas', icon: <AppRegistrationIcon />, route: '/Estadisticas' },
   ];
 
   return (

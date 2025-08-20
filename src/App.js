@@ -12,6 +12,8 @@ import Exportar from './Pages/Exportar.jsx';
 import Proveedores from './Pages/Proveedores.jsx';
 import Historial from './Pages/Historial.jsx';
 import RegistrarEntradas from './Pages/RegistrarEntradas.jsx';
+import RegistrarProveedor from './Pages/RegistrarProveedor.jsx';
+import Estadisticas from './Pages/Estadisticas.jsx';
 
 const drawerWidthOpen = 240;
 const drawerWidthClosed = 70;
@@ -43,7 +45,9 @@ function App() {
             <Route path="/RegistrarEntrada" element={<RegistrarEntradas />} />
             <Route path="/Exportar" element={<Exportar />} />
             <Route path="/Proveedores" element={<Proveedores />} />
+            <Route path="/RegistroProveedores" element={<RegistrarProveedor />} />
             <Route path="/Historial" element={<Historial />} />
+            <Route path="/Estadisticas" element={<Estadisticas />} />
           </Routes>
         </Box>
       </Box>
